@@ -1,0 +1,14 @@
+[alias]
+	co = checkout
+	l = log
+	s = status
+	wip = "!git add --all; git commit -m WIP"
+[user]
+	name = Josh Callender
+	email = j@callender.me
+[core]
+	editor = vim
+[color]
+	ui = auto
+	branch = auto
+	status = auto
