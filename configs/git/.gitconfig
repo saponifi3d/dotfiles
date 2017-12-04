@@ -1,16 +1,17 @@
 [alias]
-	co = checkout
-	l = log
-	s = status
-	wip = "!git add --all; git commit -m WIP"
+    co = checkout
+    l = log --pretty=short
+    s = status
+    wip = "!git add --all; git commit -m WIP"
+    logs  = log --pretty=format:'%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(dim green)(%cr) %C(cyan)<%an>%Creset'
 [user]
-	name = Josh Callender
-	email = j@callender.me
+    name = Josh Callender
+    email = j@callender.me
 [core]
-	editor = vim
+    editor = vim
 [color]
-	ui = auto
-	branch = auto
-	status = auto
+    ui = auto
+    branch = auto
+    status = auto
 [push]
-	default = current
+    default = current
