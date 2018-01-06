@@ -4,6 +4,7 @@
 - ag
 - wget
 - tree
+- bash-completion
 
 ## Vim Plugins
 - [pathogen](https://github.com/tpope/vim-pathogen)
