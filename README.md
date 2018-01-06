@@ -2,9 +2,10 @@
 
 ## Brew Packages
 - ag
-- wget
-- tree
 - bash-completion
+- git
+- tree
+- wget
 
 ## Vim Plugins
 - [pathogen](https://github.com/tpope/vim-pathogen)
