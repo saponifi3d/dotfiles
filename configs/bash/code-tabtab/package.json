@@ -1,0 +1,18 @@
+{
+  "name": "code-tabtab",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "completion-code": "index.js"
+  },
+  "scripts": {
+    "postinstall": "tabtab install --name code --completer completion-code --auto",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tabtab": "^2.2.2"
+  }
+}
