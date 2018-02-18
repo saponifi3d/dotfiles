@@ -15,5 +15,9 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
 fi
 
 code() {
-    cd "$CODE_PATH/$1"
+    if [ -z "$1" ]; then
+        cd $CODE_PATH
+    else
+        cd "$CODE_PATH/$1"
+    fi
 }
