@@ -6,7 +6,7 @@ bash:
 	echo "source $(DOTFILES)/configs/bash/.bash_profile" >> ~/.bash_profile
 
 code_complete:
-	npm link "$(DOTFILES)/configs/bash/code-tabtab"
+	npm link $(DOTFILES)/configs/bash/code-tabtab
 	echo "source ~/.bashrc" >> ~/.bash_profile
 
 .PHONY: git # Add git configurations to the top level
