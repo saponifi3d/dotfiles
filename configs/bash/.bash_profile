@@ -6,6 +6,7 @@ alias vi="vim"
 alias gst="git status"
 
 alias ctags="/usr/local/bin/ctags"
+alias jtags="ctags -R . && sed -i '' -E '/^(if|switch|function|module\.exports|it|describe).+language:js$/d' tags"
 
 PROMPT_COLOR=33
 export PS1='\[\033[4;1;${PROMPT_COLOR}m\]\w\[\033[0m\]$(__git_ps1 "(%s)")$ '
