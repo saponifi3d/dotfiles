@@ -1,5 +1,9 @@
 --exclude=node_modules
 --exclude=.git
+--exclude=tags
+--exclude=\*.spec.\*
+--exclude=\*.map
+--exclude=\*.swp
 
 --languages=-javascript
 
