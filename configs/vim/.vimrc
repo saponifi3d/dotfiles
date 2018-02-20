@@ -43,7 +43,7 @@ set grepprg=ag
 set tags=./tags;
 
 " Command-T
-set wildignore+=node_modules,coverage,jest,.dist,dist
+set wildignore+=node_modules,coverage,jest,.dist,dist,build
 " set g:CommandTAcceptSelectionVSplitCommand=1
 " set g:python_pep8_indent_multiline_string=0
 
