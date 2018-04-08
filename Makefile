@@ -10,8 +10,11 @@ bash:
 	echo "source $(DOTFILES)/configs/bash/.bash_profile" >> ~/.bash_profile
 
 ctags:
-	brew install ctags
+	brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 	ln -s $(DOTFILES)/configs/ctags/.ctags ~/.ctags || make msg
+
+generate_ctags:
+	echo "TODO, run `ctags -a -R .`"
 
 code_complete:
 	brew install bash-completion || brew upgrade bash-completion
