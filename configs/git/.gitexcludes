@@ -1,3 +1,5 @@
 .DS_Store
 .sw*
 tags
+tags/
+node_modules/
