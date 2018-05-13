@@ -54,6 +54,9 @@ syntax on
 autocmd BufRead,BufNewFile *.md setlocal spell
 let g:vim_markdown_folding_disabled=1
 
+" Enable Guten-tags
+let g:gutentags_enabled=1
+
 filetype plugin on
 runtime macros/matchit.vim
 
