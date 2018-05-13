@@ -1,4 +1,5 @@
---exclude=node_modules
+--recurse=yes
+
 --exclude=.git
 --exclude=tags
 --exclude=\*.spec.\*

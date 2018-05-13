@@ -12,10 +12,7 @@ bash:
 ctags:
 	brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 	ln -s $(DOTFILES)/configs/ctags/.ctags ~/.ctags || make msg
-	echo "To generate ctags run: 'ctags -a -R .'"
-
-generate_ctags:
-	echo "TODO, run 'ctags -a -R .'"
+	git clone https://github.com/ludovicchabant/vim-gutentags.git ~/.vim/bundle/vim-gutentags || make msg
 
 code_complete:
 	brew install bash-completion || brew upgrade bash-completion
@@ -52,3 +49,4 @@ vim:
 	git clone https://github.com/tpope/vim-fugitive.git ~/.vim/bundle/vim-fugitive || make msg
 	git clone https://github.com/mxw/vim-jsx.git ~/.vim/bundle/vim-jsx || make msg
 	git clone https://github.com/leafgarland/typescript-vim.git ~/.vim/bundle/typescript-vim || make msg
+	git clone https://github.com/ludovicchabant/vim-gutentags.git ~/.vim/bundle/vim-gutentags || make msg

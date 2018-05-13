@@ -2,4 +2,5 @@
 .sw*
 tags
 tags/
+node_modules
 node_modules/
