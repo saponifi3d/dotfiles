@@ -1,3 +1,5 @@
+--recurse=yes
+
 --exclude=node_modules
 --exclude=.git
 --exclude=tags

@@ -10,12 +10,13 @@ bash:
 	echo "source $(DOTFILES)/configs/bash/.bash_profile" >> ~/.bash_profile
 
 ctags:
-	brew install ctags
+	brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 	ln -s $(DOTFILES)/configs/ctags/.ctags ~/.ctags || make msg
+	git clone https://github.com/ludovicchabant/vim-gutentags.git ~/.vim/bundle/vim-gutentags || make msg
 
 code_complete:
 	brew install bash-completion || brew upgrade bash-completion
-	npm link $(DOTFILES)/configs/bash/code-tabtab
+	npm link "$(DOTFILES)/configs/bash/code-tabtab"
 	echo "source ~/.bashrc" >> ~/.bash_profile
 
 .PHONY: git # Add git configurations to the top level
@@ -48,3 +49,4 @@ vim:
 	git clone https://github.com/tpope/vim-fugitive.git ~/.vim/bundle/vim-fugitive || make msg
 	git clone https://github.com/mxw/vim-jsx.git ~/.vim/bundle/vim-jsx || make msg
 	git clone https://github.com/leafgarland/typescript-vim.git ~/.vim/bundle/typescript-vim || make msg
+	git clone https://github.com/ludovicchabant/vim-gutentags.git ~/.vim/bundle/vim-gutentags || make msg
