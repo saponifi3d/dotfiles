@@ -6,6 +6,7 @@
 --exclude=\*.spec.\*
 --exclude=\*.map
 --exclude=\*.swp
+--exclude=\*.md
 
 --languages=-javascript
 

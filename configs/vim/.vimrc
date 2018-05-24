@@ -40,7 +40,7 @@ set autoread
 
 " Setup ag / searching
 set grepprg=ag
-set tags=./tags;
+set tags=./.tags
 
 " Command-T
 set wildignore+=node_modules,coverage,jest,.dist,dist,build
@@ -56,6 +56,7 @@ let g:vim_markdown_folding_disabled=1
 
 " Enable Guten-tags
 let g:gutentags_enabled=1
+let g:gutentags_ctags_tagfile='./.tags'
 
 filetype plugin on
 runtime macros/matchit.vim
