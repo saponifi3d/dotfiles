@@ -15,3 +15,5 @@
     status = auto
 [push]
     default = current
+[fetch]
+    prune = true
