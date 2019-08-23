@@ -63,3 +63,4 @@ vim:
 	git clone https://github.com/mxw/vim-jsx.git ~/.vim/bundle/vim-jsx || make msg
 	git clone https://github.com/leafgarland/typescript-vim.git ~/.vim/bundle/typescript-vim || make msg
 	git clone https://github.com/ludovicchabant/vim-gutentags.git ~/.vim/bundle/vim-gutentags || make msg
+	git clone https://github.com/prettier/vim-prettier ~/.vim/bundle/vim-prettier || make msg

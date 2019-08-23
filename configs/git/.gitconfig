@@ -6,7 +6,7 @@
     logs  = log --pretty=format:'%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(dim green)(%cr) %C(cyan)<%an>%Creset'
 [user]
     name = Josh Callender
-    email = j@callender.me
+    email = jcallender@lyft.com
 [core]
     editor = vim
 [color]
