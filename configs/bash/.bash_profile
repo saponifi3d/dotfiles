@@ -24,12 +24,14 @@ code() {
 }
 
 function monorepo() {
+    changed_dir="false"
+
     if [ $# -eq 1 ]; then
         cd $CODE_PATH/$1
+        changed_dir="true"
     else
         IN=`node -pe 'JSON.parse(process.argv[1]).workspaces.toString()' "$(cat $CODE_PATH/$1/package.json)"`
         IFS=',' read -r -a workspaces <<< "$IN"
-        changed_dir="false"
 
         for workspace in "${workspaces[@]}"
         do
