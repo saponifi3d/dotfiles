@@ -7,9 +7,11 @@ map :WQ :wq
 map :grep :Ag<space>
 map :ack :Ag<space>
 map :ag :Ag<Space>
+map :Vs :vs
 
 map <F2> :NERDTreeToggle<CR>
 map <F3> :copen<CR>
+map <Leader>g :ALEGoToDefinitionInVSplit<CR>
 
 " General Setings
 set scrolloff=3
