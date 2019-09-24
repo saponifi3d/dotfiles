@@ -22,3 +22,21 @@ code() {
         cd "$CODE_PATH/$1"
     fi
 }
+
+function monorepo() {
+    if [ $# -eq 1 ]; then
+        cd $CODE_PATH/$1
+    else
+        IN=`node -pe 'JSON.parse(process.argv[1]).workspaces.toString()' "$(cat $CODE_PATH/$1/package.json)"`
+        workspaces=$(echo $IN | tr "," "\n")
+
+        for workspace in $workspaces
+        do
+            :
+            path=${workspace%??}
+            if [[ -d $CODE_PATH/$1/$path/$2 ]]; then
+                cd $CODE_PATH/$1/$path/$2
+            fi;
+        done
+    fi;
+}
