@@ -46,5 +46,6 @@ function monorepo() {
 
     if [[ "$changed_dir" == "false" ]]; then
         echo "Couldn't find $2 in $1"
+        return 1
     fi;
 }
