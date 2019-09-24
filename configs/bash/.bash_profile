@@ -28,15 +28,22 @@ function monorepo() {
         cd $CODE_PATH/$1
     else
         IN=`node -pe 'JSON.parse(process.argv[1]).workspaces.toString()' "$(cat $CODE_PATH/$1/package.json)"`
-        workspaces=$(echo $IN | tr "," "\n")
+        IFS=',' read -r -a workspaces <<< "$IN"
+        changed_dir="false"
 
-        for workspace in $workspaces
+        for workspace in "${workspaces[@]}"
         do
             :
             path=${workspace%??}
+            echo "$path"
             if [[ -d $CODE_PATH/$1/$path/$2 ]]; then
                 cd $CODE_PATH/$1/$path/$2
+                changed_dir="true"
             fi;
         done
+    fi;
+
+    if [[ "$changed_dir" == "false" ]]; then
+        echo "Couldn't find $2 in $1"
     fi;
 }
