@@ -35,7 +35,6 @@ function monorepo() {
         do
             :
             path=${workspace%??}
-            echo "$path"
             if [[ -d $CODE_PATH/$1/$path/$2 ]]; then
                 cd $CODE_PATH/$1/$path/$2
                 changed_dir="true"
