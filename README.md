@@ -18,3 +18,4 @@
 - [vim-javascript](https://github.com/pangloss/vim-javascript)
 - [vim-jsx](https://github.com/mxw/vim-jsx)
 - [typescript-vim](https://github.com/leafgarland/typescript-vim)
+- [vim-prettier](https://github.com/prettier/vim-prettier)
