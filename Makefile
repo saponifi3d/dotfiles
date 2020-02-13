@@ -43,6 +43,7 @@ brew:
 	brew install wget || brew upgrade wget
 	brew install tree || brew upgrade tree
 	brew install ag || brew upgrade ag
+	brew install fzf || brew upgrade fzf
 
 .PHONY: vim # Add vimrc file to the top level and install all vim plugins
 vim:
@@ -54,7 +55,7 @@ vim:
 
 	# Install vim plugins
 	curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim || make msg
-	git clone https://github.com/wincent/command-t.git ~/.vim/bundle/command-t || make msg
+	git clone https://github.com/junegunn/fzf.vim.git ~/.vim/bundle/fzf.vim || make msg
 	git clone https://github.com/w0rp/ale.git ~/.vim/bundle/ale || make msg
 	git clone https://github.com/rking/ag.vim ~/.vim/bundle/ag || make msg
 	git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree || make msg
