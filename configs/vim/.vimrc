@@ -12,6 +12,8 @@ map :Vs :vs
 map <F2> :NERDTreeToggle<CR>
 map <F3> :copen<CR>
 map <Leader>g :ALEGoToDefinitionInVSplit<CR>
+map <Leader>t :GFiles<CR>
+map <Leader>y :GFiles?<CR>
 
 " General Setings
 set scrolloff=3
@@ -44,10 +46,9 @@ set autoread
 set grepprg=ag
 set tags=./.tags
 
-" Command-T
-set wildignore+=node_modules,coverage,jest,.dist,dist,build
-" set g:CommandTAcceptSelectionVSplitCommand=1
-" set g:python_pep8_indent_multiline_string=0
+" fzf
+set rtp+=/usr/local/opt/fzf
+"let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 set backspace=indent,eol,start
 syntax on
