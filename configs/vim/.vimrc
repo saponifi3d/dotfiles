@@ -12,7 +12,7 @@ map :Vs :vs
 map <F2> :NERDTreeToggle<CR>
 map <F3> :copen<CR>
 map <Leader>g :ALEGoToDefinitionInVSplit<CR>
-map <Leader>t :GFiles<CR>
+map <Leader>t :Files<CR>
 map <Leader>y :GFiles?<CR>
 
 " General Setings
@@ -43,11 +43,11 @@ set autoread
 
 
 " Setup ag / searching
-set grepprg=ag
+set grepprg=fzf
 set tags=./.tags
 
 " fzf
-set rtp+=/usr/local/opt/fzf
+" set rtp+=/home/saponifi3d/.fzf/bin/fzf
 " let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 set backspace=indent,eol,start

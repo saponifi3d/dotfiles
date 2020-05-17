@@ -1,4 +1,9 @@
-alias resource='source ~/.bash_profile'
+if [ -f ~/.bash_profile ]; then
+    alias resource='source ~/.bash_profile'
+else
+    alias resource='source ~/.bashrc'
+fi;
+
 alias ll="ls -la"
 alias gdi="killall Dock"
 alias grep="grep --color"
@@ -13,16 +18,18 @@ export PS1='\[\033[4;1;${PROMPT_COLOR}m\]\w\[\033[0m\]$(__git_ps1 "(%s)")$ '
 export GIT_EDITOR=vim
 export EDITOR=vim
 
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
-fi
+if [ -x "$(command -v brew)" ]; then
+    if [ -f $(brew --prefix)/etc/bash_completion ]; then
+        . $(brew --prefix)/etc/bash_completion
+    fi;
+fi;
 
 code() {
     if [ -z "$1" ]; then
         cd $CODE_PATH
     else
         cd "$CODE_PATH/$1"
-    fi
+    fi;
 }
 
 function monorepo() {
