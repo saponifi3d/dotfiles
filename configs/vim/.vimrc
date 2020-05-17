@@ -48,7 +48,7 @@ set tags=./.tags
 
 " fzf
 set rtp+=/usr/local/opt/fzf
-"let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+" let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 set backspace=indent,eol,start
 syntax on
