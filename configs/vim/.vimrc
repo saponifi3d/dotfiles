@@ -17,8 +17,8 @@ map <Leader>y :GFiles?<CR>
 
 " General Setings
 set scrolloff=3
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 
 set nu
 set autoindent
@@ -37,19 +37,6 @@ set title
 " fix the annoying file changed thing
 set autoread
 
-"character limit
-" let &colorcolumn=join(range(20,999),',')
-" highlight ColorColumn ctermbg=235 guibg=#0a0a0a
-
-
-" Setup ag / searching
-set grepprg=fzf
-set tags=./.tags
-
-" fzf
-" set rtp+=/home/saponifi3d/.fzf/bin/fzf
-" let $FZF_DEFAULT_COMMAND = 'ag -g ""'
-
 set backspace=indent,eol,start
 syntax on
 
@@ -57,15 +44,40 @@ syntax on
 autocmd BufRead,BufNewFile *.md setlocal spell
 let g:vim_markdown_folding_disabled=1
 
-" Enable Guten-tags
-let g:gutentags_enabled=0
-" let g:gutentags_ctags_tagfile='./.tags'
+call plug#begin()
 
-filetype plugin on
-runtime macros/matchit.vim
+Plug 'preservim/nerdtree'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'w0rp/ale'
+Plug 'vim-airline/vim-airline'
+Plug 'tpope/vim-fugitive'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'prettier/vim-prettier'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 
-" Turn on pathogen
-execute pathogen#infect()
+call plug#end()
+
 filetype plugin indent on
 
 set laststatus=2
+let g:javascript_plugin_jsdoc = 1
+
+" TODO Re-enable once i figure out why the highlight colors aren't changing
+" vim-jsx-typescript
+" autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
+"
+" " dark red
+" hi tsxTagName guifg=#E06C75
+"
+" " orange
+" hi tsxCloseString guifg=#F99575
+" hi tsxCloseTag guifg=#F99575
+" hi tsxCloseTagName guifg=#F99575
+" hi tsxAttributeBraces guifg=#F99575
+" hi tsxEqual guifg=#F99575
+"
+" " yellow
+" hi tsxAttrib guifg=#F8BD7F
