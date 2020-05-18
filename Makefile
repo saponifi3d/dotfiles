@@ -51,17 +51,7 @@ vim:
 	ln -s $(DOTFILES)/configs/vim/.vimrc ~/.vimrc || make msg
 
 	# Create vim directories
-	mkdir -p ~/.vim ~/.vim/autoload ~/.vim/bundle
+	mkdir -p ~/.vim ~/.vim/autoload
 
 	# Install vim plugins
-	curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim || make msg
-	git clone https://github.com/junegunn/fzf.vim.git ~/.vim/bundle/fzf.vim || make msg
-	git clone https://github.com/w0rp/ale.git ~/.vim/bundle/ale || make msg
-	git clone https://github.com/rking/ag.vim ~/.vim/bundle/ag || make msg
-	git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree || make msg
-	git clone https://github.com/vim-airline/vim-airline ~/.vim/bundle/vim-airline || make msg
-	git clone https://github.com/tpope/vim-fugitive.git ~/.vim/bundle/vim-fugitive || make msg
-	git clone https://github.com/mxw/vim-jsx.git ~/.vim/bundle/vim-jsx || make msg
-	git clone https://github.com/leafgarland/typescript-vim.git ~/.vim/bundle/typescript-vim || make msg
-	git clone https://github.com/ludovicchabant/vim-gutentags.git ~/.vim/bundle/vim-gutentags || make msg
-	git clone https://github.com/prettier/vim-prettier ~/.vim/bundle/vim-prettier || make msg
+	git clone https://github.com/junegunn/vim-plug.git ~/.vim/autoload/vim-plug || make msg
