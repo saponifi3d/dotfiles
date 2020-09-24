@@ -11,14 +11,15 @@ map :Vs :vs
 
 map <F2> :NERDTreeToggle<CR>
 map <F3> :copen<CR>
-map <Leader>g :ALEGoToDefinitionInVSplit<CR>
-map <Leader>t :Files<CR>
+map <Leader>g :vs<CR>:ALEGoToDefinition<CR>
+map <Leader>t :GFiles<CR>
 map <Leader>y :GFiles?<CR>
+map <Leader>d :Gdiffsplit<CR>
 
 " General Setings
 set scrolloff=3
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 
 set nu
 set autoindent
