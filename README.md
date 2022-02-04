@@ -8,7 +8,7 @@
 - wget
 
 ## Vim Plugins
-- [pathogen](https://github.com/tpope/vim-pathogen)
+- [vim-plug](https://github.com/junegunn/vim-plug)
 - [ale](https://github.com/w0rp/ale)
 - [ag](https://github.com/rking/ag.vim)
 - [nerdtree](https://github.com/scrooloose/nerdtree)
