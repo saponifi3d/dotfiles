@@ -10,11 +10,12 @@ msg:
 	echo "Already installed."
 
 .PHONY: install # Symlinks all the configuration files
-install: bash brew git vim code_complete ctags screen_saver
+install: bash brew git vim screen_saver
+# code_complete ctags screen_saver
 
 .PHONY: screen_saver # Installs the Aerial screen saver from brew
 screen_saver:
-	brew cask install aerial
+	brew install --cask aerial
 
 .PHONY: bash # Add a "source .bash_profile" to the top level bash_profile
 bash:
