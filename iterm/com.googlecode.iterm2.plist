@@ -8,8 +8,12 @@
 	<string>BBCE9708-398E-42CC-B961-AA4005F2087D</string>
 	<key>HapticFeedbackForEsc</key>
 	<false/>
+	<key>HideMenuBarInFullscreen</key>
+	<true/>
 	<key>HotkeyMigratedFromSingleToMulti</key>
 	<true/>
+	<key>MaxVertically</key>
+	<false/>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -746,6 +750,8 @@
 			<string>/Users/jcallender</string>
 		</dict>
 	</array>
+	<key>PMPrintingExpandedStateForPrint2</key>
+	<false/>
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>
@@ -779,11 +785,15 @@
 			<string>kNextWindowPointerAction</string>
 		</dict>
 	</dict>
-	<key>ShowFullScreenTabBar</key>
+	<key>Print In Black And White</key>
 	<true/>
+	<key>ShowFullScreenTabBar</key>
+	<false/>
 	<key>ShowPaneTitles</key>
 	<false/>
 	<key>SoundForEsc</key>
+	<false/>
+	<key>UseLionStyleFullscreen</key>
 	<false/>
 	<key>UseTmuxStatusBar</key>
 	<false/>
