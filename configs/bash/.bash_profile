@@ -24,6 +24,15 @@ if [ -x "$(command -v brew)" ]; then
     fi;
 fi;
 
+# tab-complete for 'code'
+function _codePaths() {
+    local paths=("$CODE_PATH/$2"*)
+    [[ -e ${paths[0]} ]] && COMPREPLY=( "${paths[@]##*/}" )
+}
+
+complete -F _codePaths code
+
+# quickly change between repos
 code() {
     if [ -z "$1" ]; then
         cd $CODE_PATH
