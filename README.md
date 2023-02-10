@@ -1,5 +1,11 @@
 # My Configurations
 
+- [Install Iterm 2](https://iterm2.com/downloads/stable/latest)
+- Install Brew
+```sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
 ## Brew Packages
 - ag
 - bash-completion
