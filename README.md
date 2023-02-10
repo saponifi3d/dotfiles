@@ -5,6 +5,12 @@
 ```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
+- Export variables
+```
+CODE_PATH=~/Code
+DOTFILES=$CODE_PATH/dotfiles
+```
+- Install Vim Plugins, by running `vim` and `:PlugInstall` - https://github.com/junegunn/vim-plug
 
 ## Brew Packages
 - ag
