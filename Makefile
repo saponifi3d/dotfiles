@@ -54,8 +54,5 @@ vim:
 	# Link vim config
 	ln -s $(DOTFILES)/configs/vim/.vimrc ~/.vimrc || make msg
 
-	# Create vim directories
-	mkdir -p ~/.vim ~/.vim/autoload
-
 	# Install vim plugins
-	git clone https://github.com/junegunn/vim-plug.git ~/.vim/autoload/vim-plug || make msg
+	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim || make msg
