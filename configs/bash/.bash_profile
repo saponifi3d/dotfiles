@@ -14,9 +14,16 @@ alias ctags="/usr/local/bin/ctags"
 alias jtags="ctags -R . && sed -i '' -E '/^(if|switch|function|module\.exports|it|describe).+language:js$/d' tags"
 
 PROMPT_COLOR=33
-export PS1='\[\033[4;1;${PROMPT_COLOR}m\]\w\[\033[0m\]$(__git_ps1 "(%s)")$ '
+if [ -f ~/.git-prompt.sh ]; then
+    source ~/.git-prompt.sh
+    export PS1='\[\033[4;1;${PROMPT_COLOR}m\]\w\[\033[0m\]$(__git_ps1 "(%s)")$ '
+else
+    export PS1='\[\033[4;1;${PROMPT_COLOR}m\]\w\[\033[0m\]$ '
+fi;
+
 export GIT_EDITOR=vim
 export EDITOR=vim
+export BASH_SILENCE_DEPRECATION_WARNING=1
 
 if [ -x "$(command -v brew)" ]; then
     if [ -f $(brew --prefix)/etc/bash_completion ]; then

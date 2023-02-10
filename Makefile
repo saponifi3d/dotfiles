@@ -11,7 +11,9 @@ msg:
 
 .PHONY: install # Symlinks all the configuration files
 install: bash brew git vim screen_saver
-# code_complete ctags screen_saver
+
+## DISABLED COMMANDS
+# code_complete ctags
 
 .PHONY: screen_saver # Installs the Aerial screen saver from brew
 screen_saver:
@@ -38,6 +40,7 @@ git:
 	brew install git || brew upgrade git
 	ln -s $(DOTFILES)/configs/git/.gitconfig ~/.gitconfig || make msg
 	ln -s $(DOTFILES)/configs/git/.gitexcludes ~/.gitexlcudes || make msg
+	curl -o ~/.git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 
 .PHONY: brew # Install any additional brew packages regularly used
 brew:
