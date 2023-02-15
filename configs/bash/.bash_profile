@@ -24,12 +24,19 @@ fi;
 export GIT_EDITOR=vim
 export EDITOR=vim
 export BASH_SILENCE_DEPRECATION_WARNING=1
+export PATH=$PATH:~/go/bin
 
 if [ -x "$(command -v brew)" ]; then
     if [ -f $(brew --prefix)/etc/bash_completion ]; then
         . $(brew --prefix)/etc/bash_completion
     fi;
 fi;
+
+clone() {
+    git clone git@github.com:$1.git
+}
+
+####### CODE COMMAND ########
 
 # tab-complete for 'code'
 function _codePaths() {
@@ -47,6 +54,8 @@ code() {
         cd "$CODE_PATH/$1"
     fi;
 }
+#
+#############################
 
 function monorepo() {
     changed_dir="false"
