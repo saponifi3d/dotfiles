@@ -18,8 +18,8 @@ map <Leader>d :Gdiffsplit<CR>
 
 " General Setings
 set scrolloff=3
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 
 set nu
 set autoindent
@@ -58,6 +58,8 @@ Plug 'mxw/vim-jsx'
 Plug 'prettier/vim-prettier'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
+Plug 'tpope/vim-fugitive'
+Plug 'github/copilot.vim'
 
 call plug#end()
 
@@ -80,5 +82,3 @@ let g:javascript_plugin_jsdoc = 1
 " hi tsxAttributeBraces guifg=#F99575
 " hi tsxEqual guifg=#F99575
 "
-" " yellow
-" hi tsxAttrib guifg=#F8BD7F
