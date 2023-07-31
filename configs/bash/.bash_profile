@@ -17,6 +17,13 @@ PROMPT_COLOR=33
 if [ -f ~/.git-prompt.sh ]; then
     source ~/.git-prompt.sh
     export PS1='\[\033[4;1;${PROMPT_COLOR}m\]\w\[\033[0m\]$(__git_ps1 "(%s)")$ '
+
+    if [ -f ~/.git-completion.bash ]; then
+      source ~/.git-completion.bash
+    else
+      curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash > ~/.git-completion.bash
+      source ~/.git-completion.bash
+    fi
 else
     export PS1='\[\033[4;1;${PROMPT_COLOR}m\]\w\[\033[0m\]$ '
 fi;
