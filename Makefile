@@ -10,7 +10,7 @@ msg:
 	echo "Already installed."
 
 .PHONY: install # Symlinks all the configuration files
-install: bash brew git vim screen_saver
+install: bash brew git vim
 
 ## DISABLED COMMANDS
 # code_complete ctags
