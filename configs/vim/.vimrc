@@ -79,6 +79,9 @@ let g:ale_virtualtext_cursor = 'disabled' "Remove the inline text
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd FileType python set foldmethod=indent
+autocmd FileType python set foldlevel=99
+
 
 " TODO Re-enable once i figure out why the highlight colors aren't changing
 " vim-jsx-typescript
