@@ -52,12 +52,13 @@ syntax on
 autocmd BufRead,BufNewFile *.md setlocal spell
 let g:vim_markdown_folding_disabled=1
 
+" vim-plug
 call plug#begin()
 
 Plug 'preservim/nerdtree'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-fugitive'
 Plug 'pangloss/vim-javascript'
@@ -69,14 +70,16 @@ Plug 'tpope/vim-fugitive'
 Plug 'github/copilot.vim'
 
 call plug#end()
+"""
 
 filetype plugin indent on
 
 set laststatus=2
 let g:javascript_plugin_jsdoc = 1
 
-"""""""""""""""" Configure ALE
 let g:airline#extensions#ale#enabled = 1
+
+" Configure ALE
 let g:ale_echo_msg_error_str = 'Error'
 let g:ale_echo_msg_warning_str = 'Warning'
 let g:ale_echo_msg_format = '[%severity%][%linter%]: %s'
@@ -84,21 +87,7 @@ let g:ale_echo_msg_format = '[%severity%][%linter%]: %s'
 let g:ale_virtualtext_cursor = 'disabled' "Remove the inline text
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Configure Python Folds
 autocmd FileType python set foldmethod=indent
 autocmd FileType python set foldlevel=99
-
-
-" TODO Re-enable once i figure out why the highlight colors aren't changing
-" vim-jsx-typescript
-" autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
-"
-" " dark red
-" hi tsxTagName guifg=#E06C75
-"
-" " orange
-" hi tsxCloseString guifg=#F99575
-" hi tsxCloseTag guifg=#F99575
-" hi tsxCloseTagName guifg=#F99575
-" hi tsxAttributeBraces guifg=#F99575
-" hi tsxEqual guifg=#F99575
