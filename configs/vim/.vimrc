@@ -1,21 +1,27 @@
-" Custom Mappings
+" Typo fixes
 map :W :w
 map :Q :q
 map :Wq :wq
 map :WQ :wq
+map :Vs :vs
+map :Bd :bd
 
+" FZF
 map :grep :Ag<space>
 map :ack :Ag<space>
 map :ag :Ag<Space>
-map :Vs :vs
 
 map <F2> :NERDTreeToggle<CR>
 map <F3> :copen<CR>
 map <Leader>o :copen<CR>
+
+" Navigation
 map <Leader>g :vs<CR>:ALEGoToDefinition<CR>
 map <Leader>t :GFiles<CR>
 map <Leader>y :GFiles?<CR>
-map <Leader>d :Gdiffsplit<CR>
+map <Leader>d :ALEGoToDefinition<CR>
+map <Leader>r :ALEFindReferences<CR>
+map <Leader>k :Buffers<CR>
 
 " General Setings
 set scrolloff=3
