@@ -11,6 +11,7 @@ map :Vs :vs
 
 map <F2> :NERDTreeToggle<CR>
 map <F3> :copen<CR>
+map <Leader>o :copen<CR>
 map <Leader>g :vs<CR>:ALEGoToDefinition<CR>
 map <Leader>t :GFiles<CR>
 map <Leader>y :GFiles?<CR>
@@ -68,6 +69,17 @@ filetype plugin indent on
 set laststatus=2
 let g:javascript_plugin_jsdoc = 1
 
+"""""""""""""""" Configure ALE
+let g:airline#extensions#ale#enabled = 1
+let g:ale_echo_msg_error_str = 'Error'
+let g:ale_echo_msg_warning_str = 'Warning'
+let g:ale_echo_msg_format = '[%severity%][%linter%]: %s'
+
+let g:ale_virtualtext_cursor = 'disabled' "Remove the inline text
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " TODO Re-enable once i figure out why the highlight colors aren't changing
 " vim-jsx-typescript
 " autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
@@ -81,4 +93,3 @@ let g:javascript_plugin_jsdoc = 1
 " hi tsxCloseTagName guifg=#F99575
 " hi tsxAttributeBraces guifg=#F99575
 " hi tsxEqual guifg=#F99575
-"
