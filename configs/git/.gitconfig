@@ -2,11 +2,15 @@
     co = checkout
     l = log --pretty=short
     s = status
+    staged = diff --cached
+    w = "!git add --all; git commit -m WIP"
     wip = "!git add --all; git commit -m WIP"
     logs  = log --pretty=format:'%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(dim green)(%cr) %C(cyan)<%an>%Creset'
+    watch = "update-index --no-assume-unchanged"
+    unwatch = "update-index --assume-unchanged"
 [user]
     name = Josh Callender
-    email = j@callender.me
+    email = 1569818+saponifi3d@users.noreply.github.com
 [core]
     editor = vim
 [color]
@@ -19,3 +23,5 @@
     prune = true
 [pull]
     rebase = true
+[init]
+    defaultBranch = main
