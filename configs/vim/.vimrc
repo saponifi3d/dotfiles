@@ -24,7 +24,7 @@ map <Leader>r :ALEFindReferences<CR>
 map <Leader>k :Buffers<CR>
 
 " General Setings
-set scrolloff=3
+set scrolloff=5
 set tabstop=2
 set shiftwidth=2
 
@@ -41,6 +41,7 @@ set ruler
 set ignorecase
 set smartcase
 set title
+set splitright
 
 " fix the annoying file changed thing
 set autoread
@@ -55,19 +56,26 @@ let g:vim_markdown_folding_disabled=1
 " vim-plug
 call plug#begin()
 
+" General
 Plug 'preservim/nerdtree'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'dense-analysis/ale'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-fugitive'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
+Plug 'github/copilot.vim'
+
+" JavaScript
 Plug 'prettier/vim-prettier'
+Plug 'pangloss/vim-javascript'
+
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
-Plug 'tpope/vim-fugitive'
-Plug 'github/copilot.vim'
+Plug 'maxmellon/vim-jsx-pretty'
+
+
+" Python
+Plug 'michaeljsmith/vim-indent-object'
 
 call plug#end()
 """
@@ -81,9 +89,15 @@ let g:javascript_plugin_jsdoc = 1
 let g:airline#extensions#ale#enabled = 1
 
 " Configure ALE
-let g:ale_echo_msg_error_str = 'Error'
-let g:ale_echo_msg_warning_str = 'Warning'
+let g:ale_sign_error = '⛔️'
+let g:ale_sign_warning = '⚠️ '
+let g:ale_echo_msg_error_str = '⛔️'
+let g:ale_echo_msg_warning_str = '⚠️ '
 let g:ale_echo_msg_format = '[%severity%][%linter%]: %s'
+let g:ale_python_auto_virtualenv = 1
+
+" Disable pyright linting for python, still uses pyright for nav
+let g:ale_linters_ignore = {'python': ['pyright'], 'typescript': ['biome'], 'javascript': ['biome'], 'javascriptreact': ['biome'], 'typescriptreact': ['biome']}
 
 "" ALE - Use quickfix
 let g:ale_virtualtext_cursor = 'disabled'
@@ -93,3 +107,6 @@ let g:ale_set_quickfix = 1
 " Configure Python Folds
 autocmd FileType python set foldmethod=indent
 autocmd FileType python set foldlevel=99
+
+" Fix bug in leafgarland/typescript-vim
+hi link typescriptReserved Keyword
