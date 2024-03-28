@@ -1,7 +1,6 @@
 # Help command to see all available things.
 help:
 	@echo "Available commands:"
-	@echo
 	@cat $(MAKEFILE_LIST) | grep '^\.PHONY' | sed -e 's/\.PHONY\:/  /' | column -t -c 100 -s '#' | sed -e 's/#//'
 	@echo
 
@@ -12,28 +11,9 @@ msg:
 .PHONY: install # Symlinks all the configuration files
 install: bash brew git vim
 
-## DISABLED COMMANDS
-# code_complete ctags
-
-.PHONY: screen_saver # Installs the Aerial screen saver from brew
-screen_saver:
-	brew install --cask aerial
-
 .PHONY: bash # Add a "source .bash_profile" to the top level bash_profile
 bash:
 	echo "source $(DOTFILES)/configs/bash/.bash_profile" >> ~/.bash_profile
-
-.PHONY: ctags # Add and configure ctags
-ctags:
-	brew install --HEAD universal-ctags/universal-ctags/universal-ctags
-	ln -s $(DOTFILES)/configs/ctags/.ctags ~/.ctags || make msg
-	git clone https://github.com/ludovicchabant/vim-gutentags.git ~/.vim/bundle/vim-gutentags || make msg
-
-.PHONY: code_complete # Add configurations to use the `code` command with tab completion
-code_complete:
-	brew install bash-completion || brew upgrade bash-completion
-	npm link "$(DOTFILES)/configs/bash/code-tabtab"
-	echo "source ~/.bashrc" >> ~/.bash_profile
 
 .PHONY: git # Add git configurations to the top level
 git:
