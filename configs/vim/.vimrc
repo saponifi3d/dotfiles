@@ -22,6 +22,7 @@ map <Leader>y :GFiles?<CR>
 map <Leader>d :ALEGoToDefinition<CR>
 map <Leader>r :ALEFindReferences<CR>
 map <Leader>k :Buffers<CR>
+map <Leader>f :ALEFix<CR>
 
 " General Setings
 set scrolloff=5
@@ -69,10 +70,12 @@ Plug 'github/copilot.vim'
 Plug 'prettier/vim-prettier'
 Plug 'pangloss/vim-javascript'
 
+" TypeScript
 Plug 'leafgarland/typescript-vim'
+
+" React
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'maxmellon/vim-jsx-pretty'
-
 
 " Python
 Plug 'michaeljsmith/vim-indent-object'
@@ -95,6 +98,14 @@ let g:ale_echo_msg_error_str = '⛔️'
 let g:ale_echo_msg_warning_str = '⚠️ '
 let g:ale_echo_msg_format = '[%severity%][%linter%]: %s'
 let g:ale_python_auto_virtualenv = 1
+let g:ale_fixers = {
+\  '*': ['remove_trailing_lines', 'trim_whitespace'],
+\  'python': ['black', 'autopep8', 'isort'],
+\  'javascript': ['prettier'],
+\  'javascriptreact': ['prettier'],
+\  'typescript': ['prettier'],
+\  'typescriptreact': ['prettier'],
+\}
 
 " Disable pyright linting for python, still uses pyright for nav
 let g:ale_linters_ignore = {'python': ['pyright'], 'typescript': ['biome'], 'javascript': ['biome'], 'javascriptreact': ['biome'], 'typescriptreact': ['biome']}
