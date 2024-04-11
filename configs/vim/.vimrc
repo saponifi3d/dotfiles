@@ -101,6 +101,7 @@ let g:ale_python_auto_virtualenv = 1
 let g:ale_fixers = {
 \  '*': ['remove_trailing_lines', 'trim_whitespace'],
 \  'python': ['black', 'autopep8', 'isort'],
+\  'css': ['stylelint', 'css-beautify', 'prettier'],
 \  'javascript': ['prettier'],
 \  'javascriptreact': ['prettier'],
 \  'typescript': ['prettier'],
