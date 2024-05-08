@@ -4,14 +4,16 @@ else
     alias resource='source ~/.bashrc'
 fi;
 
+######################################
+#              Aliases               #
+######################################
 alias ll="ls -la"
 alias gdi="killall Dock"
 alias grep="grep --color"
 alias vi="vim"
 alias gst="git status"
-
-alias ctags="/usr/local/bin/ctags"
-alias jtags="ctags -R . && sed -i '' -E '/^(if|switch|function|module\.exports|it|describe).+language:js$/d' tags"
+alias git-merged="git branch --merged | grep -v '\*' | grep -v 'master' | grep -v 'main'"
+alias git-prune="git-merged | xargs -n 1 git branch -d"
 
 PROMPT_COLOR=33
 if [ -f ~/.git-prompt.sh ]; then
@@ -42,9 +44,9 @@ clone() {
     git clone git@github.com:$1.git
 }
 
-####### CODE COMMAND ########
-
-# tab-complete for 'code'
+######################################
+#            CODE COMMAND            #
+######################################
 function _codePaths() {
     local paths=("$CODE_PATH/$2"*)
     [[ -e ${paths[0]} ]] && COMPREPLY=( "${paths[@]##*/}" )
@@ -52,7 +54,6 @@ function _codePaths() {
 
 complete -F _codePaths code
 
-# quickly change between repos
 code() {
     if [ -z "$1" ]; then
         cd $CODE_PATH
@@ -60,9 +61,11 @@ code() {
         cd "$CODE_PATH/$1"
     fi;
 }
-#
-#############################
 
+
+######################################
+#            Monorepo Cmd            #
+######################################
 function monorepo() {
     changed_dir="false"
 
