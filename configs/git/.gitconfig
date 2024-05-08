@@ -13,6 +13,7 @@
     email = 1569818+saponifi3d@users.noreply.github.com
 [core]
     editor = vim
+	  excludesfile = ~/.gitexcludes
 [color]
     ui = auto
     branch = auto
