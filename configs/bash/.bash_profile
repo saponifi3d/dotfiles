@@ -11,14 +11,33 @@ alias ll="ls -la"
 alias gdi="killall Dock"
 alias grep="grep --color"
 alias vi="vim"
+
 alias gst="git status"
 alias git-merged="git branch --merged | grep -v '\*' | grep -v 'master' | grep -v 'main'"
 alias git-prune="git-merged | xargs -n 1 git branch -d"
+alias git-rebase="git fetch && git rebase origin/main"
+
+git_color() {
+    local git_status="$(git status 2> /dev/null)"
+    local color="\033[1;32m" # Green by default (no changes)
+
+    if [[ $git_status =~ "Your branch is ahead" ]]; then
+        color="\033[1;36m" # Blue (commits to push)
+    elif [[ $git_status =~ "nothing to commit" ]]; then
+        color="\033[1;32m" # Green (no changes)
+    elif [[ $git_status =~ "Changes not staged for commit" ]]; then
+        color="\033[1;31m" # Red (uncommitted changes)
+    elif [[ $git_status =~ "Changes to be committed" ]]; then
+        color="\033[1;33m" # Yellow (changes staged)
+    fi
+
+    echo -ne $color
+}
 
 PROMPT_COLOR=33
 if [ -f ~/.git-prompt.sh ]; then
     source ~/.git-prompt.sh
-    export PS1='\[\033[4;1;${PROMPT_COLOR}m\]\w\[\033[0m\]$(__git_ps1 "(%s)")$ '
+    export PS1='\[\033[4;1;${PROMPT_COLOR}m\]\w\[\033[0m\]$(__git_ps1 "($(git_color)%s ⛙\[\033[0m\])")$ '
 
     if [ ! -f ~/.git-completion.bash ]; then
       curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash > ~/.git-completion.bash
