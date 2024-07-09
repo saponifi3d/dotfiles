@@ -123,6 +123,6 @@ let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 
 " Configure Python Folds
-" autocmd FileType python set foldmethod=indent
-" autocmd FileType python set foldlevel=99
-" autocmd FileType python setlocal foldmethod=indent
+autocmd FileType python set foldmethod=indent
+autocmd FileType python set foldlevel=99
+autocmd FileType python setlocal foldmethod=indent
