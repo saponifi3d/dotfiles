@@ -14,25 +14,9 @@ alias vi="vim"
 
 alias gst="git status"
 alias git-merged="git branch --merged | grep -v '\*' | grep -v 'master' | grep -v 'main'"
-alias git-prune="git-merged | xargs -n 1 git branch -d"
-alias git-rebase="git fetch && git rebase origin/main"
-
-git_color() {
-    local git_status="$(git status 2> /dev/null)"
-    local color="\033[1;32m" # Green by default (no changes)
-
-    if [[ $git_status =~ "Your branch is ahead" ]]; then
-        color="\033[1;36m" # Blue (commits to push)
-    elif [[ $git_status =~ "nothing to commit" ]]; then
-        color="\033[1;32m" # Green (no changes)
-    elif [[ $git_status =~ "Changes not staged for commit" ]]; then
-        color="\033[1;31m" # Red (uncommitted changes)
-    elif [[ $git_status =~ "Changes to be committed" ]]; then
-        color="\033[1;33m" # Yellow (changes staged)
-    fi
-
-    echo -ne $color
-}
+alias gm="git-merged"
+alias git-prune="git-prune-branches"
+alias git-rebase="git-rebase-default"
 
 PROMPT_COLOR=33
 if [ -f ~/.git-prompt.sh ]; then
@@ -110,4 +94,54 @@ function monorepo() {
         echo "Couldn't find $2 in $1"
         return 1
     fi;
+}
+
+######################################
+#              Git Cmds              #
+######################################
+
+# Prune branches that have been merged
+git-prune-branches() {
+  echo "Pruning branches..."
+  branches=$(git-merged)
+
+  if [ -z "$branches" ]; then
+    echo "No branches to prune."
+  else
+    echo "Branches to be pruned:"
+    echo "$branches"
+    echo "$branches" | xargs git branch -d
+  fi
+}
+
+## Rebase with the default branch in repo, default is 'main'
+git-rebase-default() {
+  default_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+
+  if [ -z "$default_branch" ]; then
+    default_branch="main"
+    echo "No default branch found, trying 'origin/$default_branch'."
+  fi
+
+  echo "Rebasing with 'origin/$default_branch' ..."
+  git fetch && git rebase origin/$default_branch && echo "done."
+}
+
+
+# Get the terminal color, for the corresponding git status
+git_color() {
+    local git_status="$(git status 2> /dev/null)"
+    local color="\033[1;32m" # Green by default (no changes)
+
+    if [[ $git_status =~ "Your branch is ahead" ]]; then
+        color="\033[1;36m" # Blue (commits to push)
+    elif [[ $git_status =~ "nothing to commit" ]]; then
+        color="\033[1;32m" # Green (no changes)
+    elif [[ $git_status =~ "Changes not staged for commit" ]]; then
+        color="\033[1;31m" # Red (uncommitted changes)
+    elif [[ $git_status =~ "Changes to be committed" ]]; then
+        color="\033[1;33m" # Yellow (changes staged)
+    fi
+
+    echo -ne $color
 }
