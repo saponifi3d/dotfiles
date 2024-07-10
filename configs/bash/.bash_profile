@@ -133,14 +133,14 @@ git_color() {
     local git_status="$(git status 2> /dev/null)"
     local color="\033[1;32m" # Green by default (no changes)
 
-    if [[ $git_status =~ "Your branch is ahead" ]]; then
-        color="\033[1;36m" # Blue (commits to push)
-    elif [[ $git_status =~ "nothing to commit" ]]; then
-        color="\033[1;32m" # Green (no changes)
-    elif [[ $git_status =~ "Changes not staged for commit" ]]; then
+    if [[ $git_status =~ "Changes not staged for commit" ]]; then
         color="\033[1;31m" # Red (uncommitted changes)
     elif [[ $git_status =~ "Changes to be committed" ]]; then
         color="\033[1;33m" # Yellow (changes staged)
+    elif [[ $git_status =~ "Your branch is ahead" ]]; then
+        color="\033[1;36m" # Blue (commits to push)
+    elif [[ $git_status =~ "nothing to commit" ]]; then
+        color="\033[1;32m" # Green (no changes)
     fi
 
     echo -ne $color
