@@ -1,3 +1,6 @@
+# Enable Bash vi mode
+set -o vi
+
 if [ -f ~/.bash_profile ]; then
     alias resource='source ~/.bash_profile'
 else

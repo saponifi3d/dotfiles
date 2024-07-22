@@ -25,7 +25,7 @@ map <Leader>y :GFiles?<CR>
 map <Leader>d :ALEGoToDefinition<CR>
 map <Leader>r :ALEFindReferences<CR>
 map <Leader>k :Buffers<CR>
-map <Leader>f :ALEFix<CR>
+map <Leader>f :ALEFix<CR>:ALEComplete<CR>
 
 " General Setings
 set scrolloff=5
