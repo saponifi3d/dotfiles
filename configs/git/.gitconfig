@@ -8,6 +8,7 @@
     logs  = log --pretty=format:'%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(dim green)(%cr) %C(cyan)<%an>%Creset'
     watch = "update-index --no-assume-unchanged"
     unwatch = "update-index --assume-unchanged"
+    praise = blame
 [user]
     name = Josh Callender
     email = 1569818+saponifi3d@users.noreply.github.com
