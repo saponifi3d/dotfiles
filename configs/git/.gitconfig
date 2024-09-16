@@ -1,5 +1,6 @@
 [alias]
     co = checkout
+    oc = checkout
     l = log --pretty=short
     s = status
     staged = diff --cached
