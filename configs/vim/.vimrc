@@ -15,6 +15,9 @@ map <F2> :NERDTreeToggle<CR>
 map <F3> :copen<CR>
 map <Leader>o :copen<CR>
 
+" Folds
+map <Leader>z za
+
 " Navigation
 map <Leader>g :vs<CR>:ALEGoToDefinition<CR>
 map <Leader>t :GFiles<CR>
@@ -22,7 +25,7 @@ map <Leader>y :GFiles?<CR>
 map <Leader>d :ALEGoToDefinition<CR>
 map <Leader>r :ALEFindReferences<CR>
 map <Leader>k :Buffers<CR>
-map <Leader>f :ALEFix<CR>
+map <Leader>f :ALEFix<CR>:ALEComplete<CR>
 
 " General Setings
 set scrolloff=5
@@ -85,6 +88,9 @@ call plug#end()
 
 filetype plugin indent on
 
+" Fix bug in leafgarland/typescript-vim
+hi link typescriptReserved Keyword
+
 set laststatus=2
 let g:javascript_plugin_jsdoc = 1
 
@@ -119,6 +125,3 @@ let g:ale_set_quickfix = 1
 " Configure Python Folds
 autocmd FileType python set foldmethod=indent
 autocmd FileType python set foldlevel=99
-
-" Fix bug in leafgarland/typescript-vim
-hi link typescriptReserved Keyword
