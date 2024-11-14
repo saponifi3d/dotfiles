@@ -15,12 +15,6 @@ alias gdi="killall Dock"
 alias grep="grep --color"
 alias vi="vim"
 
-alias gst="git status"
-alias git-merged="git branch --merged | grep -v '\*' | grep -v 'master' | grep -v 'main'"
-alias gm="git-merged"
-alias git-prune="git-prune-branches"
-alias git-rebase="git-rebase-default"
-
 PROMPT_COLOR=33
 if [ -f ~/.git-prompt.sh ]; then
     source ~/.git-prompt.sh
@@ -102,6 +96,15 @@ function monorepo() {
 ######################################
 #              Git Cmds              #
 ######################################
+alias gst="git status"
+alias git-merged="git branch --merged | grep -v '\*' | grep -v 'master' | grep -v 'main'"
+alias git-prune="git-prune-branches"
+alias git-rebase="git-rebase-default"
+
+# git-machete
+source $CODE_PATH/dotfiles/configs/completions/git-machete-completions.bash
+alias gm="git machete"
+complete -o default -o nospace -F _git_machete gm
 
 # Prune branches that have been merged
 git-prune-branches() {

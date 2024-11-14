@@ -48,6 +48,7 @@ brew:
 	brew install tree || brew upgrade tree
 	brew install ag || brew upgrade ag
 	brew install fzf || brew upgrade fzf
+	brew install git-machete || brew upgrade git-machete
 
 .PHONY: vim # Add vimrc file to the top level and install all vim plugins
 vim:
