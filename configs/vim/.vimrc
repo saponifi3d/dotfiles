@@ -26,8 +26,15 @@ map <Leader>d :ALEGoToDefinition<CR>
 map <Leader>r :ALEFindReferences<CR>
 map <Leader>k :Buffers<CR>
 map <Leader>f :ALEFix<CR>:ALEComplete<CR>
+map <Leader>n :set nu<CR>
+map <Leader>m :set nonu<CR>
+map <Leader>a :ALEEnable<CR>
+map <Leader>s :ALEDisable<CR>
+map <Leader>c :copen<CR>
+map <Leader>q :cclose<CR>
+map <Leader>S :setlocal spell!<CR>
 
-" General Setings
+" General Settings
 set scrolloff=5
 set tabstop=2
 set shiftwidth=2
@@ -53,8 +60,6 @@ set autoread
 set backspace=indent,eol,start
 syntax on
 
-" Enable spell check for markdown files
-autocmd BufRead,BufNewFile *.md setlocal spell
 let g:vim_markdown_folding_disabled=1
 
 " vim-plug
@@ -108,10 +113,10 @@ let g:ale_fixers = {
 \  '*': ['remove_trailing_lines', 'trim_whitespace'],
 \  'python': ['black', 'autopep8', 'isort'],
 \  'css': ['stylelint', 'css-beautify', 'prettier'],
-\  'javascript': ['prettier'],
-\  'javascriptreact': ['prettier'],
-\  'typescript': ['prettier'],
-\  'typescriptreact': ['prettier'],
+\  'javascript': ['prettier', 'eslint'],
+\  'javascriptreact': ['prettier', 'eslint'],
+\  'typescript': ['prettier', 'eslint'],
+\  'typescriptreact': ['prettier', 'eslint'],
 \}
 
 " Disable pyright linting for python, still uses pyright for nav
@@ -125,3 +130,15 @@ let g:ale_set_quickfix = 1
 " Configure Python Folds
 autocmd FileType python set foldmethod=indent
 autocmd FileType python set foldlevel=99
+
+" Spell check
+" Enable spell check for markdown files
+autocmd BufRead,BufNewFile *.md setlocal spell
+autocmd BufRead,BufNewFile *.py setlocal spell
+
+" set spell
+set spelllang=en_us
+
+" Enable snake case + camel casing options
+set iskeyword+=_
+set spelloptions+=camel

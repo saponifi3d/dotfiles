@@ -137,16 +137,16 @@ git-rebase-default() {
 # Get the terminal color, for the corresponding git status
 git_color() {
     local git_status="$(git status 2> /dev/null)"
-    local color="\033[1;32m" # Green by default (no changes)
+    local color="\001\033[1;32m\002" # Green by default (use \001 \002 instead of \[ \])
 
     if [[ $git_status =~ "Changes not staged for commit" ]]; then
-        color="\033[1;31m" # Red (uncommitted changes)
+        color="\001\033[1;31m\002" # Red (uncommitted changes)
     elif [[ $git_status =~ "Changes to be committed" ]]; then
-        color="\033[1;33m" # Yellow (changes staged)
+        color="\001\033[1;33m\002" # Yellow (changes staged)
     elif [[ $git_status =~ "Your branch is ahead" ]]; then
-        color="\033[1;36m" # Blue (commits to push)
+        color="\001\033[1;36m\002" # Blue (commits to push)
     elif [[ $git_status =~ "nothing to commit" ]]; then
-        color="\033[1;32m" # Green (no changes)
+        color="\001\033[1;32m\002" # Green (no changes)
     fi
 
     echo -ne $color
