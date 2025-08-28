@@ -26,13 +26,11 @@ map <Leader>d :ALEGoToDefinition<CR>
 map <Leader>r :ALEFindReferences<CR>
 map <Leader>k :Buffers<CR>
 map <Leader>f :ALEFix<CR>:ALEComplete<CR>
-map <Leader>n :set nu<CR>
-map <Leader>m :set nonu<CR>
-map <Leader>a :ALEEnable<CR>
-map <Leader>s :ALEDisable<CR>
+map <Leader>n :setlocal number!<CR>
+map <Leader>a :ALEToggle<CR>
+map <Leader>S :setlocal spell!<CR>
 map <Leader>c :copen<CR>
 map <Leader>q :cclose<CR>
-map <Leader>S :setlocal spell!<CR>
 
 " General Settings
 set scrolloff=5
