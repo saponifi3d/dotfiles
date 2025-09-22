@@ -70,7 +70,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'dense-analysis/ale'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-fugitive'
-Plug 'github/copilot.vim'
+" Plug 'github/copilot.vim'
 
 " JavaScript
 Plug 'prettier/vim-prettier'
