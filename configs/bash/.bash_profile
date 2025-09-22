@@ -8,26 +8,55 @@ else
 fi;
 
 ######################################
+#                PS1                 #
+######################################
+PROMPT_COLOR="33"
+
+# Get bash auto-complete if it doesn't exist
+if [ ! -f ~/.git-completion.bash ]; then
+  curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash > ~/.git-completion.bash
+fi
+
+# Set the git branch color based on status
+set_git_prompt() {
+    local branch=$(git branch --show-current 2>/dev/null)
+
+    if [ -n "$branch" ]; then
+        local git_status="$(git status --porcelain 2>/dev/null)"
+        local color="32" # Default green
+
+        if [ -n "$git_status" ]; then
+            if git status 2>/dev/null | grep -q "Changes to be committed"; then
+                color="33" # Yellow (staged)
+            else
+                color="31" # Red (unstaged)
+            fi
+        elif git status 2>/dev/null | grep -q "Your branch is ahead"; then
+            color="36" # Cyan (ahead)
+        fi
+
+        # Store just the color code and branch name
+        GIT_COLOR="$color"
+        GIT_BRANCH="$branch"
+    else
+        GIT_COLOR=""
+        GIT_BRANCH=""
+    fi
+}
+
+# Update prompt before each command
+PROMPT_COMMAND=set_git_prompt
+
+# Build PS1 with proper escaping done at PS1 evaluation time
+export PS1='\[\033[4;1;${PROMPT_COLOR}m\]\w\[\033[0m\]${GIT_BRANCH:+(}\[\033[1;${GIT_COLOR}m\]${GIT_BRANCH} ⛙\[\033[0m\]${GIT_BRANCH:+)}$ '
+
+######################################
 #              Aliases               #
 ######################################
 alias ll="ls -la"
 alias gdi="killall Dock"
 alias grep="grep --color"
 alias vi="vim"
-
-PROMPT_COLOR=33
-if [ -f ~/.git-prompt.sh ]; then
-    source ~/.git-prompt.sh
-    export PS1='\[\033[4;1;${PROMPT_COLOR}m\]\w\[\033[0m\]$(__git_ps1 "($(git_color)%s ⛙\[\033[0m\])")$ '
-
-    if [ ! -f ~/.git-completion.bash ]; then
-      curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash > ~/.git-completion.bash
-    fi
-
-    source ~/.git-completion.bash
-else
-    export PS1='\[\033[4;1;${PROMPT_COLOR}m\]\w\[\033[0m\]$ '
-fi;
 
 export GIT_EDITOR=vim
 export EDITOR=vim
@@ -131,23 +160,4 @@ git-rebase-default() {
 
   echo "Rebasing with 'origin/$default_branch' ..."
   git fetch && git rebase origin/$default_branch && echo "done."
-}
-
-
-# Get the terminal color, for the corresponding git status
-git_color() {
-    local git_status="$(git status 2> /dev/null)"
-    local color="\001\033[1;32m\002" # Green by default (use \001 \002 instead of \[ \])
-
-    if [[ $git_status =~ "Changes not staged for commit" ]]; then
-        color="\001\033[1;31m\002" # Red (uncommitted changes)
-    elif [[ $git_status =~ "Changes to be committed" ]]; then
-        color="\001\033[1;33m\002" # Yellow (changes staged)
-    elif [[ $git_status =~ "Your branch is ahead" ]]; then
-        color="\001\033[1;36m\002" # Blue (commits to push)
-    elif [[ $git_status =~ "nothing to commit" ]]; then
-        color="\001\033[1;32m\002" # Green (no changes)
-    fi
-
-    echo -ne $color
 }
