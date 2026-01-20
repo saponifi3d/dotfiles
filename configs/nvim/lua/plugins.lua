@@ -34,6 +34,12 @@ require("lazy").setup({
     lazy = false,
     priority = 1000,
     style="night",
+    config = function()
+      require("tokyonight").setup({
+        style = "night",
+      })
+      vim.cmd[[colorscheme tokyonight]]
+    end,
     on_colors = function(colors)
       colors.hint = colors.orange
       colors.error = "#ff0000"
