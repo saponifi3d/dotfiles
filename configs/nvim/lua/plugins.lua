@@ -2,31 +2,6 @@
 
 require("lazy").setup({
   -- ============================================
-  -- Treesitter
-  -- ============================================
-  -- {
-  --   "nvim-treesitter/nvim-treesitter",
-  --   build = ":TSUpdate",
-  --   config = function()
-  --     local ok, configs = pcall(require, "nvim-treesitter.configs")
-  --     if ok then
-  --       configs.setup({
-  --         ensure_installed = {
-  --           "javascript", "typescript", "tsx", "python",
-  --           "html", "css", "json", "yaml", "markdown",
-  --           "lua", "vim", "vimdoc", "bash",
-  --         },
-  --         sync_install = false,
-  --         auto_install = true,
-  --         highlight = { enable = true },
-  --         indent = { enable = true },
-  --       })
-  --     end
-  --   end,
-  -- },
-
-
-  -- ============================================
   --- Tokyo Night
   -- ============================================
   {
