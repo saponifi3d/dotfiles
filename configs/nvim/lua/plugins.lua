@@ -25,6 +25,21 @@ require("lazy").setup({
   --   end,
   -- },
 
+
+  -- ============================================
+  --- Tokyo Night
+  -- ============================================
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    style="night",
+    on_colors = function(colors)
+      colors.hint = colors.orange
+      colors.error = "#ff0000"
+    end
+  },
+
   -- ============================================
   -- Mason
   -- ============================================
@@ -206,7 +221,7 @@ require("lazy").setup({
   },
 
   -- ============================================
-  -- Telescope 
+  -- Telescope
   -- ============================================
   {
     "nvim-telescope/telescope.nvim",
@@ -226,7 +241,7 @@ require("lazy").setup({
       require("lualine").setup({
         options = {
           icons_enabled = false,
-          theme = "auto",
+          theme = "tokyonight",
           component_separators = { left = "|", right = "|" },
           section_separators = { left = "", right = "" },
         },

@@ -1,7 +1,4 @@
--- General Settings (matching your vimrc)
-
--- Colorscheme
-vim.cmd("colorscheme default")
+-- General Settings
 
 -- Display
 vim.opt.scrolloff = 5
@@ -46,3 +43,5 @@ vim.opt.iskeyword:append("_")
 -- Syntax
 vim.cmd("syntax on")
 vim.cmd("filetype plugin indent on")
+
+vim.cmd("set clipboard=unnamedplus")
