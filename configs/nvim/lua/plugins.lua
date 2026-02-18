@@ -50,7 +50,7 @@ require("lazy").setup({
       require("conform").setup({
         formatters_by_ft = {
           ["_"] = { "trim_whitespace", "trim_newlines" },
-          python = { "black", "isort" },
+          python = { "ruff_organize_imports", "ruff_format" },
           javascript = { "prettier" },
           javascriptreact = { "prettier" },
           typescript = { "prettier" },
