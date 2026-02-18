@@ -10,6 +10,7 @@ vim.opt.laststatus = 2
 vim.opt.signcolumn = "yes"
 vim.opt.termguicolors = true
 
+
 -- Indentation
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2

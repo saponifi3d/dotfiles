@@ -12,6 +12,7 @@ require("lazy").setup({
     config = function()
       require("tokyonight").setup({
         style = "night",
+        transparent = true,
       })
       vim.cmd[[colorscheme tokyonight]]
     end,
@@ -59,7 +60,7 @@ require("lazy").setup({
           yaml = { "prettier" },
           markdown = { "prettier" },
         },
-        format_on_save = false,
+        format_on_save = true,
       })
     end,
   },

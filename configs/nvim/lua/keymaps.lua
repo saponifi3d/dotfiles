@@ -16,6 +16,11 @@ local function map(mode, lhs, rhs, desc)
 end
 
 -- ============================================
+-- Search
+-- ============================================
+vim.keymap.set("n", "<Leader>h", "<cmd>nohlsearch<CR>")
+
+-- ============================================
 -- File Explorer (F2 = NERDTree)
 -- ============================================
 map("n", "<F2>", "<cmd>NvimTreeToggle<CR>", "Toggle file explorer")
