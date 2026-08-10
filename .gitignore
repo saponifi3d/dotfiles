@@ -11,4 +11,6 @@ configs/pi/trust.json
 configs/pi/sessions
 configs/pi/npm
 configs/pi/git
+configs/pi/models-store.json
+configs/pi/mcp-cache.json
 Makefile.bak-*

@@ -5,7 +5,7 @@
   "autocompleteMaxVisible": 10,
   "externalEditor": "nvim",
   "defaultProvider": "openrouter",
-  "defaultModel": "openai/gpt-5.6-sol",
+  "defaultModel": "openrouter/auto-beta",
   "defaultThinkingLevel": "high",
   "compaction": {
     "enabled": true,

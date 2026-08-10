@@ -1,3 +1,6 @@
+# Default to this repository's location while allowing an explicit override.
+DOTFILES ?= $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
+
 # Help command to see all available things.
 help:
 	@echo "Available commands:"
@@ -59,61 +62,27 @@ vim:
 	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim || make msg
 
 
-# >>> pi coding agent — managed by pi-sync.sh, edits will be overwritten
+# Pi coding agent configuration
 PI_SHA := ac4ac9eaf69f2b01ca3af984a5c48f3b99b84278
-PI_EXAMPLES := git-checkpoint todo permission-gate protected-paths notify \
-               status-line confirm-destructive dirty-repo-guard
+PI_REPO := https://github.com/earendil-works/pi.git
 PI_CONFIG := $(DOTFILES)/configs/pi
-PI_AGENT  := $(HOME)/.pi/agent
+PI_SCRIPT := $(DOTFILES)/scripts/pi-config.sh
+PI_ENV := PI_SHA="$(PI_SHA)" PI_REPO="$(PI_REPO)" PI_CONFIG="$(PI_CONFIG)"
 
-.PHONY: pi # Install the pi coding agent and link its configuration
+.PHONY: pi # Install pi and link the portable configuration
 pi: pi_check
-	npm install -g --ignore-scripts @earendil-works/pi-coding-agent || make msg
-	mkdir -p $(PI_AGENT)
-	ln -s $(PI_CONFIG)/settings.json $(PI_AGENT)/settings.json || make msg
-	ln -s $(PI_CONFIG)/keybindings.json $(PI_AGENT)/keybindings.json || make msg
-	ln -s $(PI_CONFIG)/AGENTS.md $(PI_AGENT)/AGENTS.md || make msg
-	ln -s $(PI_CONFIG)/themes $(PI_AGENT)/themes || make msg
-	ln -s $(PI_CONFIG)/extensions $(PI_AGENT)/extensions || make msg
-	ln -s $(PI_CONFIG)/prompts $(PI_AGENT)/prompts || make msg
-	@echo
-	@echo "Linked what was missing. Existing files were left alone."
-	@echo "Verify with: pi config"
+	npm install -g --ignore-scripts @earendil-works/pi-coding-agent
+	@$(PI_ENV) "$(PI_SCRIPT)" install
+	@echo "Pi is installed. Run 'pi' to configure this machine."
 
-.PHONY: pi_check # Verify configs/pi is self-contained and portable
+.PHONY: pi_check # Verify tracked pi configuration is portable and runtime-state-free
 pi_check:
-	@test -d "$(PI_CONFIG)/extensions" || { \
-	  echo "FAIL: $(PI_CONFIG)/extensions missing. Run pi-sync.sh (or make pi_vendor)."; exit 1; }
-	@n=`find "$(PI_CONFIG)/extensions" -maxdepth 1 -name '*.ts' | wc -l | tr -d ' '`; \
-	 d=`find "$(PI_CONFIG)/extensions" -maxdepth 2 -name 'index.ts' | wc -l | tr -d ' '`; \
-	 t=`expr $$n + $$d`; echo "loadable extensions committed: $$t"; \
-	 if [ "$$t" -eq 0 ]; then \
-	   echo "FAIL: no extensions in the repo. pi would load nothing."; exit 1; fi
-	@l=`find "$(PI_CONFIG)" -type l | wc -l | tr -d ' '`; \
-	 if [ "$$l" -ne 0 ]; then \
-	   echo "FAIL: $$l symlink(s) inside configs/pi — these break on a new machine:"; \
-	   find "$(PI_CONFIG)" -type l; exit 1; fi
-	@if grep -rq -E '(/Users/|/home/|~/src/)' "$(PI_CONFIG)" --include='*.json' 2>/dev/null; then \
-	   echo "FAIL: machine-specific paths in configs/pi:"; \
-	   grep -rn -E '(/Users/|/home/|~/src/)' "$(PI_CONFIG)" --include='*.json'; exit 1; fi
-	@echo "configs/pi is self-contained."
+	@$(PI_ENV) "$(PI_SCRIPT)" check
 
-.PHONY: pi_vendor # Re-vendor pi's upstream example extensions at PI_SHA
-pi_vendor:
-	rm -rf /tmp/pi-vendor
-	git clone --filter=blob:none --sparse https://github.com/earendil-works/pi.git /tmp/pi-vendor
-	cd /tmp/pi-vendor && git sparse-checkout set packages/coding-agent/examples/extensions && git checkout $(PI_SHA)
-	mkdir -p $(PI_CONFIG)/extensions
-	for f in $(PI_EXAMPLES); do \
-	  cp /tmp/pi-vendor/packages/coding-agent/examples/extensions/$$f.ts $(PI_CONFIG)/extensions/; done
-	rm -rf $(PI_CONFIG)/extensions/subagent
-	cp -R /tmp/pi-vendor/packages/coding-agent/examples/extensions/subagent $(PI_CONFIG)/extensions/
-	rm -rf /tmp/pi-vendor
-	@echo "Vendored at $(PI_SHA)."
+.PHONY: pi_verify # Verify the managed checkout and installed links
+pi_verify:
+	@$(PI_ENV) "$(PI_SCRIPT)" verify
 
-.PHONY: pi_unlink # Remove pi symlinks, leaving real files, sessions and auth intact
+.PHONY: pi_unlink # Remove only symlinks managed by make pi
 pi_unlink:
-	for f in settings.json keybindings.json AGENTS.md themes extensions prompts; do \
-	  if [ -L "$(PI_AGENT)/$$f" ]; then rm -f "$(PI_AGENT)/$$f"; echo "unlinked $$f"; fi; done
-	@echo "Only symlinks were removed. Real files, auth.json and sessions/ untouched."
-# <<< pi coding agent
+	@$(PI_ENV) "$(PI_SCRIPT)" unlink
