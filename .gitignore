@@ -4,3 +4,11 @@ tags*
 .tags*
 tmp
 *.sw*
+
+# pi — runtime state, never commit
+configs/pi/auth.json
+configs/pi/trust.json
+configs/pi/sessions
+configs/pi/npm
+configs/pi/git
+Makefile.bak-*
