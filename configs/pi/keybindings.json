@@ -1,0 +1,48 @@
+{
+  "//": "~/.pi/agent/keybindings.json — macOS. Run /reload after editing.",
+
+  "//1": "NOTE: user bindings REPLACE defaults for an action, so defaults worth",
+  "//2": "keeping are re-listed explicitly below.",
+
+  "//3": "--- editor: ctrl-only, no Option needed ---",
+  "tui.editor.cursorLeft": ["left", "ctrl+b"],
+  "tui.editor.cursorRight": ["right", "ctrl+f"],
+  "tui.editor.cursorUp": ["up"],
+  "tui.editor.cursorDown": ["down"],
+  "tui.editor.cursorWordLeft": ["alt+left", "ctrl+left"],
+  "tui.editor.cursorWordRight": ["alt+right", "ctrl+right"],
+  "tui.editor.cursorLineStart": ["home", "ctrl+a"],
+  "tui.editor.cursorLineEnd": ["end", "ctrl+e"],
+
+  "//4": "--- deletion ---",
+  "tui.editor.deleteCharBackward": ["backspace"],
+  "tui.editor.deleteWordBackward": ["ctrl+w"],
+  "tui.editor.deleteToLineStart": ["ctrl+u"],
+  "tui.editor.deleteToLineEnd": ["ctrl+k"],
+
+  "//5": "--- prompt history on ctrl+p / ctrl+n ---",
+  "//6": "These take precedence over model cycling while the editor is focused,",
+  "//7": "so ctrl+p still works inside selectors.",
+  "tui.editor.historyPrevious": "ctrl+p",
+  "tui.editor.historyNext": "ctrl+n",
+
+  "//8": "--- model cycling, moved off the ctrl+p we just took ---",
+  "app.model.cycleForward": "ctrl+shift+l",
+  "app.model.cycleBackward": "ctrl+shift+h",
+
+  "//9": "--- follow-up / dequeue: Pi defaults are alt+enter and alt+up.",
+  "//10": "Kept as-is because Option+Enter and Option+Up survive on macOS even",
+  "//11": "without Option-as-Meta. Add ctrl+shift fallbacks alongside them.",
+  "app.message.followUp": ["alt+enter", "ctrl+shift+j"],
+  "app.message.dequeue": ["alt+up", "ctrl+shift+k"],
+
+  "//12": "--- session commands (OpenCode leader-key equivalents) ---",
+  "app.session.tree": "ctrl+shift+t",
+  "app.session.new": "ctrl+shift+n",
+  "app.session.resume": "ctrl+shift+r",
+  "app.session.fork": "ctrl+shift+f",
+
+  "//13": "--- fullscreen transcript half-page scroll (vim ctrl+d/u feel) ---",
+  "tui.altScreen.halfPageDown": "ctrl+shift+d",
+  "tui.altScreen.halfPageUp": "ctrl+shift+u"
+}

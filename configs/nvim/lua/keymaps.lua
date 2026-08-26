@@ -1,6 +1,8 @@
 -- Keymaps (matching your vimrc workflow)
 
--- Command typo fixes
+-- ============================================
+-- Typos
+-- ============================================
 vim.cmd([[
   cnoreabbrev W w
   cnoreabbrev Q q
@@ -9,6 +11,9 @@ vim.cmd([[
   cnoreabbrev Vs vs
   cnoreabbrev Bd bd
 ]])
+
+vim.keymap.set("n", ":w'", ":w")
+vim.keymap.set("n", ":W'", ":w")
 
 -- Helper function
 local function map(mode, lhs, rhs, desc)

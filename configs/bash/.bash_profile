@@ -18,37 +18,62 @@ if [ ! -f ~/.git-completion.bash ]; then
 fi
 
 # Set the git branch color based on status
+# set_git_prompt() {
+#     local branch=$(git branch --show-current 2>/dev/null)
+#
+#     if [ -n "$branch" ]; then
+#         local git_status="$(git status --porcelain 2>/dev/null)"
+#         local color="32" # Default green
+#
+#         if [ -n "$git_status" ]; then
+#             if git status 2>/dev/null | grep -q "Changes to be committed"; then
+#                 color="33" # Yellow (staged)
+#             else
+#                 color="31" # Red (unstaged)
+#             fi
+#         elif git status 2>/dev/null | grep -q "Your branch is ahead"; then
+#             color="36" # Cyan (ahead)
+#         fi
+#
+#         # Store just the color code and branch name
+#         GIT_COLOR="$color"
+#         GIT_BRANCH="$branch"
+#     else
+#         GIT_COLOR=""
+#         GIT_BRANCH=""
+#     fi
+# }
+
 set_git_prompt() {
     local branch=$(git branch --show-current 2>/dev/null)
+    local git_part=""
 
     if [ -n "$branch" ]; then
         local git_status="$(git status --porcelain 2>/dev/null)"
-        local color="32" # Default green
+        local color="32"
 
         if [ -n "$git_status" ]; then
             if git status 2>/dev/null | grep -q "Changes to be committed"; then
-                color="33" # Yellow (staged)
+                color="33"
             else
-                color="31" # Red (unstaged)
+                color="31"
             fi
         elif git status 2>/dev/null | grep -q "Your branch is ahead"; then
-            color="36" # Cyan (ahead)
+            color="36"
         fi
 
-        # Store just the color code and branch name
-        GIT_COLOR="$color"
-        GIT_BRANCH="$branch"
-    else
-        GIT_COLOR=""
-        GIT_BRANCH=""
+        git_part="(\001\033[1;${color}m\002${branch} ⛙\001\033[0m\002)"
     fi
+
+    PS1="\001\033[4;1;${PROMPT_COLOR}m\002\w\001\033[0m\002${git_part}\$ "
 }
 
 # Update prompt before each command
 PROMPT_COMMAND=set_git_prompt
 
 # Build PS1 with proper escaping done at PS1 evaluation time
-export PS1='\[\033[4;1;${PROMPT_COLOR}m\]\w\[\033[0m\]${GIT_BRANCH:+(}\[\033[1;${GIT_COLOR}m\]${GIT_BRANCH} ⛙\[\033[0m\]${GIT_BRANCH:+)}$ '
+export PS1='\[\033[4;1;${PROMPT_COLOR}m\]\w\[\033[0m\]${GIT_BRANCH:+(\[\033[1;${GIT_COLOR}m\]${GIT_BRANCH} ⛙\[\033[0m\])}$ '
+# export PS1='\[\033[4;1;${PROMPT_COLOR}m\]\w\[\033[0m\]${GIT_BRANCH:+(}\[\033[1;${GIT_COLOR}m\]${GIT_BRANCH} ⛙\[\033[0m\]${GIT_BRANCH:+)}$ '
 
 ######################################
 #              Aliases               #

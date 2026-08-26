@@ -1,3 +1,6 @@
+# Default to this repository's location while allowing an explicit override.
+DOTFILES ?= $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
+
 # Help command to see all available things.
 help:
 	@echo "Available commands:"
@@ -10,7 +13,7 @@ msg:
 	echo "Already installed."
 
 .PHONY: install # Symlinks all the configuration files
-install: bash brew git vim
+install: bash brew git vim pi
 
 ## DISABLED COMMANDS
 # code_complete ctags
@@ -57,3 +60,29 @@ vim:
 
 	# Install vim plugins
 	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim || make msg
+
+
+# Pi coding agent configuration
+PI_SHA := ac4ac9eaf69f2b01ca3af984a5c48f3b99b84278
+PI_REPO := https://github.com/earendil-works/pi.git
+PI_CONFIG := $(DOTFILES)/configs/pi
+PI_SCRIPT := $(DOTFILES)/scripts/pi-config.sh
+PI_ENV := PI_SHA="$(PI_SHA)" PI_REPO="$(PI_REPO)" PI_CONFIG="$(PI_CONFIG)"
+
+.PHONY: pi # Install pi and link the portable configuration
+pi: pi_check
+	npm install -g --ignore-scripts @earendil-works/pi-coding-agent
+	@$(PI_ENV) "$(PI_SCRIPT)" install
+	@echo "Pi is installed. Run 'pi' to configure this machine."
+
+.PHONY: pi_check # Verify tracked pi configuration is portable and runtime-state-free
+pi_check:
+	@$(PI_ENV) "$(PI_SCRIPT)" check
+
+.PHONY: pi_verify # Verify the managed checkout and installed links
+pi_verify:
+	@$(PI_ENV) "$(PI_SCRIPT)" verify
+
+.PHONY: pi_unlink # Remove only symlinks managed by make pi
+pi_unlink:
+	@$(PI_ENV) "$(PI_SCRIPT)" unlink

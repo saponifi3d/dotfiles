@@ -52,6 +52,12 @@ vim.lsp.config("pyright", {
   },
 })
 
+vim.api.nvim_create_autocmd("CursorHold", {
+  callback = function()
+    vim.diagnostic.open_float(nil, { focus = false })
+  end,
+})
+
 -- Enable servers (only if command exists)
 local servers = {
   { name = "ts_ls", cmd = "typescript-language-server" },
