@@ -27,10 +27,15 @@
   },
   "defaultProjectTrust": "ask",
   "tuiMode": "fullscreen",
-  "lastChangelogVersion": "0.84.2",
+  "lastChangelogVersion": "0.84.4",
   "packages": [
     "npm:pi-mcp-adapter",
-    "npm:pi-lens"
+    "npm:pi-lens",
+    "npm:@juanibiapina/pi-powerbar",
+    "npm:pi-simplify",
+    "npm:@devkade/pi-plan",
+    "git:github.com/tmustier/pi-extensions",
+    "npm:@juanibiapina/pi-extension-settings"
   ],
   "markdown": {
     "mermaid": "streaming"
